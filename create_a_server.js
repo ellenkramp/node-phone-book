@@ -1,3 +1,5 @@
+///branched version for review
+
 var http = require('http');
 var contacts = 
 [
@@ -57,6 +59,10 @@ var getContacts = function(request, response) {
     response.end(JSON.stringify(contacts));
 };
 
+var printContacts = function(request, response) {
+    response.end(JSON.stringify(contacts));
+}
+
 var postContacts = function(request, response) {
     readBody(request, function(body) {
         var contact = JSON.parse(body);
@@ -97,6 +103,7 @@ var notFound = function(request, response) {
 };
 
 var routes = [
+{method: 'GET', path: '/', handler: printContacts },
 { method: 'DELETE', path: '/contacts/', handler: deleteContact },
 { method: 'GET', path: '/contacts/', handler: getContact },
 { method: 'PUT', path: '/contacts/', handler: putContact },
